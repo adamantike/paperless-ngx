@@ -97,7 +97,7 @@ def barcode_reader(image: Image) -> List[str]:
                     decoded_barcode = barcode.data.decode("utf-8")
                     barcodes.append(decoded_barcode)
                     logger.debug(
-                        f"Barcode of type {str(barcode.type)} found: {decoded_barcode}",
+                        f"Barcode of type {barcode.type!s} found: {decoded_barcode}",
                     )
     elif settings.CONSUMER_BARCODE_SCANNER == "ZXING":
         logger.debug("Scanning for barcodes using ZXING")
@@ -108,7 +108,7 @@ def barcode_reader(image: Image) -> List[str]:
             if barcode.text:
                 barcodes.append(barcode.text)
                 logger.debug(
-                    f"Barcode of type {str(barcode.format)} found: {barcode.text}",
+                    f"Barcode of type {barcode.format!s} found: {barcode.text}",
                 )
 
     return barcodes
@@ -193,7 +193,7 @@ def scan_file_for_barcodes(
             )
     else:
         logger.warning(
-            f"Unsupported file format for barcode reader: {str(mime_type)}",
+            f"Unsupported file format for barcode reader: {mime_type!s}",
         )
 
     return DocumentBarcodeInfo(pdf_filepath, barcodes)
@@ -326,6 +326,6 @@ def save_to_dir(
         if newname is not None:
             dest = dest / newname
         shutil.copy(filepath, dest)
-        logging.debug(f"saved {str(filepath)} to {str(dest)}")
+        logging.debug(f"saved {filepath!s} to {dest!s}")
     else:
-        logger.warning(f"{str(filepath)} or {str(target_dir)} don't exist.")
+        logger.warning(f"{filepath!s} or {target_dir!s} don't exist.")

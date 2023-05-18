@@ -566,7 +566,7 @@ class TestBarcode(DirectoriesMixin, FileSystemAssertsMixin, TestCase):
         self.assertEqual(
             cm.output,
             [
-                f"WARNING:paperless.barcodes:{str(test_file)} or {str(nonexistingdir)} don't exist.",
+                f"WARNING:paperless.barcodes:{test_file!s} or {nonexistingdir!s} don't exist.",
             ],
         )
 

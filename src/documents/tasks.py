@@ -132,7 +132,7 @@ def consume_file(
                         # save to consumption dir
                         # rename it to the original filename  with number prefix
                         if overrides.filename is not None:
-                            newname = f"{str(n)}_{overrides.filename}"
+                            newname = f"{n!s}_{overrides.filename}"
                         else:
                             newname = None
 
@@ -175,7 +175,7 @@ def consume_file(
                             {"type": "status_update", "data": payload},
                         )
                     except ConnectionError as e:
-                        logger.warning(f"ConnectionError on status send: {str(e)}")
+                        logger.warning(f"ConnectionError on status send: {e!s}")
                     # consuming stops here, since the original document with
                     # the barcodes has been split and will be consumed separately
                     return "File successfully split"
